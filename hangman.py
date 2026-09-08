@@ -1,7 +1,7 @@
 import random
-# 1. Words ki list aur maximum wrong attempts definition
+# 1. Words list and maximum wrong attempts definition
 word_list = ["python", "coding", "laptop", "mobile", "school"]
-secret_word = random.choice(word_list)  # List me se random word select karega
+secret_word = random.choice(word_list)  # select random word from list
 max_attempts = 6
 wrong_guesses = 0
 guessed_letters = []
@@ -11,7 +11,7 @@ print("Word guess karein! Aapke paas total 6 wrong guesses hain.\n")
 
 # 2. Main Game Loop
 while wrong_guesses < max_attempts:
-    # Word ka current state display karna (e.g., p _ t _ o _)
+    # display current state of work(e.g., p _ t _ o _)
     display_word = ""
     for letter in secret_word:
         if letter in guessed_letters:
@@ -23,21 +23,21 @@ while wrong_guesses < max_attempts:
     print(f"Remaining attempts: {max_attempts - wrong_guesses}")
     print(f"Guessed letters: {', '.join(guessed_letters)}")
 
-    # Check: Agar saare letters guess ho gaye hain to Player Jeet gaya!
+    # Check: if all letters are guessed correctly then you win
     if "_" not in display_word:
-        print("\n🎉 MUBARAK HO! Aap jeet gaye! Secret word tha:", secret_word)
+        print("\n🎉 Congratulations! you won!The secret word:", secret_word)
         break
 
     # 3. User se Input lena
-    guess = input("\nEk letter guess karein: ").lower()
+    guess = input("\nGuess one letter: ").lower()
 
     # Input Validation (Check karna ke input valid letter ho)
     if len(guess) != 1 or not guess.isalpha():
-        print("❌ Please sirf ek single letter enter karein!\n")
+        print("❌ Please eneter only single letter!\n")
         continue
 
     if guess in guessed_letters:
-        print("⚠️ Aap yeh letter pehle hi guess kar chuke hain!\n")
+        print("⚠️ You've already guessed that letter. Try another one!\n")
         continue
 
     # Letter ko guessed_letters list me add karna
@@ -45,12 +45,12 @@ while wrong_guesses < max_attempts:
 
     # 4. Check karna ke letter secret word me hai ya nahi
     if guess in secret_word:
-        print("✅ Sahi guess!\n")
+        print("✅ Good guess!\n")
     else:
         wrong_guesses += 1
         print("❌ Galat guess!\n")
 
 # Agar attempts khatam ho jayein
 if wrong_guesses == max_attempts:
-    print("\n💀 Game Over! Aapke attempts khatam ho gaye.")
-    print("Secret word tha:", secret_word)
+    print("\n💀 Game Over! Sorry your attempt limit is finished ")
+    print("Secret word:", secret_word)
